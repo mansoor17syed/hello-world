@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.2.2 (Python 3.6.2 on linux)" generated="20210113 20:24:35.684" rpa="false">
+<suite id="s1" name="Post Req Tc2" source="/home/syed/robot_practice/robot_api/post_req_tc2.robot">
+<test id="s1-t1" name="Put_User_Details">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+</arguments>
+<msg timestamp="20210113 20:24:35.818" level="INFO">Creating Session using : alias=mysession, url=https://gorest.co.in/public-api/users, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20210113 20:24:35.817" endtime="20210113 20:24:35.818"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>id=30</arg>
+<arg>name=Shubha Gandhi</arg>
+<arg>email=shubha_gandhi@gggmail.io</arg>
+<arg>gender=Male</arg>
+<arg>status=Active</arg>
+<arg>created_at=2021-01-14T03:50:03.564+05:30</arg>
+<arg>updated_at=2021-01-14T03:50:03.564+05:30</arg>
+</arguments>
+<assign>
+<var>${body}</var>
+</assign>
+<msg timestamp="20210113 20:24:35.820" level="INFO">${body} = {'id': '30', 'name': 'Shubha Gandhi', 'email': 'shubha_gandhi@gggmail.io', 'gender': 'Male', 'status': 'Active', 'created_at': '2021-01-14T03:50:03.564+05:30', 'updated_at': '2021-01-14T03:50:03.564+0...</msg>
+<status status="PASS" starttime="20210113 20:24:35.818" endtime="20210113 20:24:35.820"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Authorization=${bearerToken}</arg>
+<arg>Content-Type=application/json</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20210113 20:24:35.821" level="INFO">${headers} = {'Authorization': "'bba09dfca9d3e2a1944c916bd04efaf29f033e8b862c9e26145251b2ad909fb7'", 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20210113 20:24:35.820" endtime="20210113 20:24:35.821"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>*DEPRECATED* Please use `POST On Session` instead.</doc>
+<arguments>
+<arg>mysession</arg>
+<arg>/</arg>
+<arg>data=${body}</arg>
+<arg>headers=${headers}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20210113 20:24:35.821" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<msg timestamp="20210113 20:24:41.134" level="INFO">POST Request : url=https://gorest.co.in/public-api/users/ 
+ path_url=/public-api/users/ 
+ headers={'User-Agent': 'python-requests/2.25.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': "'bba09dfca9d3e2a1944c916bd04efaf29f033e8b862c9e26145251b2ad909fb7'", 'Content-Type': 'application/json', 'Content-Length': '206'} 
+ body={"id": "30", "name": "Shubha Gandhi", "email": "shubha_gandhi@gggmail.io", "gender": "Male", "status": "Active", "created_at": "2021-01-14T03:50:03.564+05:30", "updated_at": "2021-01-14T03:50:03.564+05:30"} 
+ </msg>
+<msg timestamp="20210113 20:24:41.135" level="INFO">POST Response : url=https://gorest.co.in/public-api/users/ 
+ status=200, reason=OK 
+ headers={'Server': 'nginx', 'Date': 'Fri, 15 Jan 2021 05:19:47 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Vary': 'Accept-Encoding, Origin', 'X-Frame-Options': 'SAMEORIGIN, sameorigin', 'X-XSS-Protection': '1; mode=block', 'X-Content-Type-Options': 'nosniff', 'X-Download-Options': 'noopen', 'X-Permitted-Cross-Domain-Policies': 'none', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'ETag': 'W/"65ab5ef0fb80a32b1723c5368d8edb14"', 'Cache-Control': 'max-age=0, private, must-revalidate', 'X-Request-Id': 'bac8f92d-6c1d-41f0-8202-5439f58f4b4d', 'X-Runtime': '0.001610', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains', 'Expect-CT': 'enforce; max-age=3600', 'Content-Encoding': 'gzip'} 
+ body={"code":401,"meta":null,"data":{"message":"Authentication failed"}} 
+ </msg>
+<msg timestamp="20210113 20:24:41.135" level="INFO">/opt/python3/lib/python3.6/site-packages/urllib3/connectionpool.py:1020: InsecureRequestWarning: Unverified HTTPS request is being made to host 'gorest.co.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,</msg>
+<msg timestamp="20210113 20:24:41.135" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20210113 20:24:35.821" endtime="20210113 20:24:41.135"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+</arguments>
+<status status="PASS" starttime="20210113 20:24:41.135" endtime="20210113 20:24:41.136"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${response.content}</arg>
+</arguments>
+<status status="PASS" starttime="20210113 20:24:41.136" endtime="20210113 20:24:41.137"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+</arguments>
+<assign>
+<var>${status_code}</var>
+</assign>
+<msg timestamp="20210113 20:24:41.138" level="INFO">${status_code} = 200</msg>
+<status status="PASS" starttime="20210113 20:24:41.137" endtime="20210113 20:24:41.138"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${status_code}</arg>
+<arg>201</arg>
+</arguments>
+<msg timestamp="20210113 20:24:41.138" level="FAIL">200 != 201</msg>
+<status status="FAIL" starttime="20210113 20:24:41.138" endtime="20210113 20:24:41.138"></status>
+</kw>
+<status status="FAIL" starttime="20210113 20:24:35.817" endtime="20210113 20:24:41.139" critical="yes">200 != 201</status>
+</test>
+<status status="FAIL" starttime="20210113 20:24:35.687" endtime="20210113 20:24:41.140"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1">Critical Tests</stat>
+<stat pass="0" fail="1">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" id="s1" name="Post Req Tc2">Post Req Tc2</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20210113 20:24:35.821" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+</errors>
+</robot>
