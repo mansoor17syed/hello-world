@@ -11,9 +11,9 @@ ${bearerToken}=	Bearer bba09dfca9d3e2a1944c916bd04efaf29f033e8b862c9e26145251b2a
 *** Test Cases ***
 Put_User_Details
     Create Session    mysession    ${base_url}
-    ${body}=	create dictionary    id=30    name=Syed    email=syed_man14@gmaill.io    gender=Male    status=Active    created_at=2021-01-14T03:50:03.564+05:30    updated_at=2021-01-14T03:50:03.564+05:30
+    ${body}=	create dictionary    id=30    name=Saheb    email=syed_man14@gmaill.io    gender=Female    status=Active    created_at=2021-01-14T03:50:03.564+05:30    updated_at=2021-01-14T03:50:03.564+05:30
     ${headers}=		create dictionary	Authorization=${bearerToken}	Content-Type=application/json
-    ${response}=    post request    mysession    /    data=${body}    headers=${headers}
+    ${response}=    delete request    mysession    /1390    data=${body}    headers=${headers}
 
     log to console    ${response.status_code}
     log to console    ${response.content}
@@ -24,4 +24,4 @@ Put_User_Details
     should be equal    ${status_code}    200
 
     ${body}=    convert to string    ${response.content}
-    should contain    ${body}    201
+    should contain    ${body}    204

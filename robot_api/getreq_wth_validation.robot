@@ -19,7 +19,7 @@ Get posts
 
     #validation 2 checking is given string present Subvenio cunctatio
     ${body}=    convert to string    ${response.content}
-    should contain    ${body}    Subvenio cunctatio
+    should contain    ${body}	Villa accommodo
 
 
     #validation 3 check headers
